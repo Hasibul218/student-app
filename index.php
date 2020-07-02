@@ -1,3 +1,4 @@
+<?php include_once 'functions.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,19 +68,19 @@
 				<form action="" method="POST">
 					<div class="form-group">
 						<label for="">Name</label>
-						<input name="name" class="form-control" type="text" placeholder="Name">
+						<input name="name" class="form-control" type="text" placeholder="Name" value="<?php oldData('name') ?>">
 					</div>
 					<div class="form-group">
 						<label for="">Email</label>
-						<input name="email" class="form-control" type="text" placeholder="Email">
+						<input name="email" class="form-control" type="text" placeholder="Email" value="<?php oldData('email') ?>">
 					</div>
 					<div class="form-group">
 						<label for="">Cell</label>
-						<input name="cell" class="form-control" type="text" placeholder="Cell no.">
+						<input name="cell" class="form-control" type="text" placeholder="Cell no." value="<?php oldData('cell') ?>">
 					</div>
 					<div class="form-group">
 						<label for="">Age</label>
-						<input name="age" class="form-control" type="text" placeholder="Age">
+						<input name="age" class="form-control" type="text" placeholder="Age" value="<?php oldData('age') ?>">
 					</div>
 					<div class="form-group">
 						<input name="submit" class="btn btn-primary" type="submit" value="Add Student">
