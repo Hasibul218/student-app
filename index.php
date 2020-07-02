@@ -9,10 +9,61 @@
 	<link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
+	<?php 
+		/**
+		 * Student Data Collect
+		 */
+		if (isset($_POST['submit'])) {
+			$name = $_POST['name'];
+			$email = $_POST['email'];
+			$cell = $_POST['cell'];
+			$age = $_POST['age'];
+
+			/**
+			 * Name Empty Check
+			 */
+			if (empty($name)) {
+				$mesg = "<p class='alert alert-danger'>*Name requeired<button class='close' data-dismiss='alert'>&times;</button></p>";
+			}
+			/**
+			 * Email Empty Check With Validate
+			 */
+			if (empty($email)) {
+				$mesg = "<p class='alert alert-danger'>*Email requeired<button class='close' data-dismiss='alert'>&times;</button></p>";
+			}
+			/**
+			 * Cell No. Empty Check With Validate
+			 */
+			if (empty($cell)) {
+				$mesg = "<p class='alert alert-danger'>*Cell no. requeired<button class='close' data-dismiss='alert'>&times;</button></p>";
+			}
+			/**
+			 * Age Empty Check With Validate
+			 */
+			if (empty($age)) {
+				$mesg = "<p class='alert alert-danger'>*Age requeired<button class='close' data-dismiss='alert'>&times;</button></p>";
+			}
+			/**
+			 * Successful Message
+			 */
+			if (empty($mesg)) {
+				$mesg = "<p class='alert alert-success'>Registerd sucessful<button class='close' data-dismiss='alert'>&times;</button></p>";
+			}
+		}
+			
+	 ?>
 	<div class="wrap shadow">
 		<div class="card">
 			<div class="card-body">
 				<h2>Add Student</h2>
+				<?php 
+				/**
+				 * Error message show
+				 */
+					if (isset($mesg)) {
+						echo $mesg;
+					}
+				 ?>
 				<form action="" method="POST">
 					<div class="form-group">
 						<label for="">Name</label>
