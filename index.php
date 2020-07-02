@@ -31,6 +31,10 @@
 			 */
 			if (empty($email)) {
 				$mesg = "<p class='alert alert-danger'>*Email requeired<button class='close' data-dismiss='alert'>&times;</button></p>";
+			}elseif (emailValidate($email) == false) {
+				$mesg = "<p class='alert alert-danger'>*Unvalid email<button class='close' data-dismiss='alert'>&times;</button></p>";
+			}elseif (emailRestrict($email) == false) {
+				$mesg = "<p class='alert alert-danger'>Only for aiub.com<button class='close' data-dismiss='alert'>&times;</button></p>";
 			}
 			/**
 			 * Cell No. Empty Check With Validate
