@@ -47,6 +47,10 @@
 			 */
 			if (empty($age)) {
 				$mesg = "<p class='alert alert-danger'>*Age requeired<button class='close' data-dismiss='alert'>&times;</button></p>";
+			}elseif (underAge($age, 22) == false) {
+				$mesg = "<p class='alert alert-danger'>You are under age<button class='close' data-dismiss='alert'>&times;</button></p>";
+			}elseif (overAge($age, 40) == false) {
+				$mesg = "<p class='alert alert-danger'>You are over age<button class='close' data-dismiss='alert'>&times;</button></p>";
 			}
 			/**
 			 * Successful Message
