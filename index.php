@@ -22,7 +22,10 @@
 			$age = $_POST['age'];
 			$location = $_POST['location'];
 			$gender = $_POST['gender'];
+			$status = $_POST['status'];
 
+			//files upload
+			$photo = $_FILES['file'];
 
 			/**
 			 * Name Empty Check
@@ -84,7 +87,7 @@
 					</div>
 					<div class="form-group">
 						<label for="">Username</label>
-						<input name="name" class="form-control" type="text" placeholder="Username" value="<?php oldData('uname') ?>">
+						<input name="uname" class="form-control" type="text" placeholder="Username" value="<?php oldData('uname') ?>">
 					</div>
 					<div class="form-group">
 						<label for="">Email</label>
@@ -121,7 +124,7 @@
 						<input type="file" name="file" class="form-control">
 					</div>
 					<div class="form-group">
-						<input type="checkbox" id="publish" name="status"><label for="publish">&nbsp Published</label>
+						<input type="checkbox" checked id="publish" name="status" value="Published"><label for="publish">&nbsp Published</label>
 					</div>
 					<div class="form-group">
 						<input name="submit" class="btn btn-primary" type="submit" value="Add Student">
