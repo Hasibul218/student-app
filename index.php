@@ -77,7 +77,7 @@
 						echo $mesg;
 					}
 				 ?>
-				<form action="" method="POST">
+				<form action="" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="">Name</label>
 						<input name="name" class="form-control" type="text" placeholder="Name" value="<?php oldData('name') ?>">
@@ -121,7 +121,7 @@
 						<input type="file" name="file" class="form-control">
 					</div>
 					<div class="form-group">
-						<input type="checkbox" id="publish"><label for="publish">&nbsp Published</label>
+						<input type="checkbox" id="publish" name="status"><label for="publish">&nbsp Published</label>
 					</div>
 					<div class="form-group">
 						<input name="submit" class="btn btn-primary" type="submit" value="Add Student">
