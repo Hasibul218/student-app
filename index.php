@@ -75,13 +75,14 @@
 			 * Insert into database name "awd416"
 			 */
 			if ($has == false) {
-				$sql = "INSERT INTO sapp (name, uname, email, cell, age, location, gender, status) VALUES ('$name', '$uname', '$email', '$cell', '$age', '$location', '$gender', '$status')";
+				$sql = "INSERT INTO students (name, uname, email, cell, age, location, gender, status) VALUES ('$name', '$uname', '$email', '$cell', '$age', '$location', '$gender', '$status')";
 				$connection -> query($sql);
 			}
 		}
 			
 	 ?>
 	<div class="wrap shadow">
+	<a class="btn btn-sm btn-info" href="table.php">View Student</a>
 		<div class="card">
 			<div class="card-body">
 				<h2>Add Student</h2>
