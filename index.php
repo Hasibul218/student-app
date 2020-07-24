@@ -43,6 +43,16 @@
 			/**
 			 * Email Empty Check With Validate
 			 */
+			//database have the mail or not check
+			$sql_email = "SELECT email FROM students WHERE email='$email'";
+			$check_email = $connection -> query($sql_email);
+			$num_email = $check_email -> num_rows;
+			if ($num_email > 0) {
+				$email_check = false;
+			}else{
+				$email_check = true;
+			}
+
 			if (empty($email)) {
 				$mesg = "<p class='alert alert-danger'>*Email requeired<button class='close' data-dismiss='alert'>&times;</button></p>";
 				$has = true;
@@ -51,6 +61,9 @@
 				$has = true;
 			}elseif (emailRestrict($email) == false) {
 				$mesg = "<p class='alert alert-danger'>Only for aiub.com<button class='close' data-dismiss='alert'>&times;</button></p>";
+				$has = true;
+			}elseif ($email_check == false) {
+				$mesg = "<p class='alert alert-danger'>Email have been used<button class='close' data-dismiss='alert'>&times;</button></p>";
 				$has = true;
 			}
 			/**
