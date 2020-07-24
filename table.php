@@ -22,22 +22,26 @@
 							<th>Name</th>
 							<th>Email</th>
 							<th>Cell</th>
+							<th>Age</th>
 							<th>Photo</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php 
-							$sql = "SELECT * FROM students";
+							$i=1; 
+							$sql = "SELECT * FROM students ORDER BY name ASC";  //name ar assending order
+							//$sql = "SELECT * FROM students LIMIT 4";  //Limit for data showing in one page
 							$data = $connection -> query($sql);
 							while ( $final_data = $data ->fetch_assoc() ) :
 						 ?>
 						<tr>
-							<td><?php echo $final_data['id']; ?></td>
+							<td><?php echo $i++; ?></td>
 							<td><?php echo $final_data['name']; ?></td>
 							<td><?php echo $final_data['email']; ?></td>
 							<td><?php echo $final_data['cell']; ?></td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
+							<td><?php echo $final_data['age']; ?></td>
+							<td><img src="assets/img/<?php echo $final_data['photo']; ?>" alt=""></td>
 							<td>
 								<a class="btn btn-sm btn-info" href="#">View</a>
 								<a class="btn btn-sm btn-warning" href="#">Edit</a>

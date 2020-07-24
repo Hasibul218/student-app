@@ -25,11 +25,7 @@
 			$cell = $_POST['cell'];
 			$age = $_POST['age'];
 			$location = $_POST['location'];
-			$gender = $_POST['gender'];
 			$status = $_POST['status'];
-
-			//files upload
-			$photo = $_FILES['file'];
 
 			/**
 			 * Name Empty Check
@@ -37,6 +33,12 @@
 			if (empty($name)) {
 				$mesg = "<p class='alert alert-danger'>*Name requeired<button class='close' data-dismiss='alert'>&times;</button></p>";
 				$has = true;
+			}
+				/**
+			 * Gender Empty Check
+			 */
+			if (isset($gender)) {
+				$gender = $_POST['gender'];
 			}
 			/**
 			 * Email Empty Check With Validate
@@ -71,12 +73,27 @@
 				$mesg = "<p class='alert alert-danger'>You are over age<button class='close' data-dismiss='alert'>&times;</button></p>";
 				$has = true;
 			}
+
+
+			
+
 			/**
 			 * Insert into database name "awd416"
 			 */
 			if ($has == false) {
-				$sql = "INSERT INTO students (name, uname, email, cell, age, location, gender, status) VALUES ('$name', '$uname', '$email', '$cell', '$age', '$location', '$gender', '$status')";
+				//files upload
+			$file_data = fileUpload($_FILES['file'], 'assets/img/',['jpg', 'png', 'jpeg', 'gif'], 1024);
+			$file_name = $file_data['file_name'];
+			$file_mess = $file_data['mess'];
+
+			if (!empty($file_mess)) {
+				$mesg = $file_mess;
+			}else{
+
+				$sql = "INSERT INTO students (name, uname, email, cell, age, location, gender,photo, status) VALUES ('$name', '$uname', '$email', '$cell', '$age', '$location', '$gender','$file_name', '$status')";
 				$connection -> query($sql);
+				 header ('Location:table.php');
+				}
 			}
 		}
 			
