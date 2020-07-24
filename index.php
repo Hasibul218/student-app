@@ -1,4 +1,7 @@
-<?php include_once 'functions.php' ?>
+<?php 
+	include_once 'functions.php';
+	require_once 'dbconnect.php';
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +18,7 @@
 		 * Student Data Collect
 		 */
 		if (isset($_POST['submit'])) {
+			$has = false;
 			$name = $_POST['name'];
 			$uname = $_POST['uname'];
 			$email = $_POST['email'];
@@ -32,38 +36,47 @@
 			 */
 			if (empty($name)) {
 				$mesg = "<p class='alert alert-danger'>*Name requeired<button class='close' data-dismiss='alert'>&times;</button></p>";
+				$has = true;
 			}
 			/**
 			 * Email Empty Check With Validate
 			 */
 			if (empty($email)) {
 				$mesg = "<p class='alert alert-danger'>*Email requeired<button class='close' data-dismiss='alert'>&times;</button></p>";
+				$has = true;
 			}elseif (emailValidate($email) == false) {
 				$mesg = "<p class='alert alert-danger'>*Unvalid email<button class='close' data-dismiss='alert'>&times;</button></p>";
+				$has = true;
 			}elseif (emailRestrict($email) == false) {
 				$mesg = "<p class='alert alert-danger'>Only for aiub.com<button class='close' data-dismiss='alert'>&times;</button></p>";
+				$has = true;
 			}
 			/**
 			 * Cell No. Empty Check With Validate
 			 */
 			if (empty($cell)) {
 				$mesg = "<p class='alert alert-danger'>*Cell no. requeired<button class='close' data-dismiss='alert'>&times;</button></p>";
+				$has = true;
 			}
 			/**
 			 * Age Empty Check With Validate
 			 */
 			if (empty($age)) {
 				$mesg = "<p class='alert alert-danger'>*Age requeired<button class='close' data-dismiss='alert'>&times;</button></p>";
+				$has = true;
 			}elseif (underAge($age, 22) == false) {
 				$mesg = "<p class='alert alert-danger'>You are under age<button class='close' data-dismiss='alert'>&times;</button></p>";
+				$has = true;
 			}elseif (overAge($age, 40) == false) {
 				$mesg = "<p class='alert alert-danger'>You are over age<button class='close' data-dismiss='alert'>&times;</button></p>";
+				$has = true;
 			}
 			/**
-			 * Successful Message
+			 * Insert into database name "awd416"
 			 */
-			if (empty($mesg)) {
-				$mesg = "<p class='alert alert-success'>Registerd sucessful<button class='close' data-dismiss='alert'>&times;</button></p>";
+			if ($has == false) {
+				$sql = "INSERT INTO sapp (name, uname, email, cell, age, location, gender, status) VALUES ('$name', '$uname', '$email', '$cell', '$age', '$location', '$gender', '$status')";
+				$connection -> query($sql);
 			}
 		}
 			
@@ -103,7 +116,7 @@
 					</div>
 					<div class="form-group">
 						<label for="">Location</label>
-						<select name="" id="" class="form-control">
+						<select name="location" id="" class="form-control">
 							<option value="">-Select-</option>
 							<option value="Mirpur">Mirpur</option>
 							<option value="Dhanmondi">Dhanmondi</option>
